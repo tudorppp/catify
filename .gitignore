@@ -74,3 +74,10 @@ lint/tmp/
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
 
+#buildSrc
+/buildSrc/build/
+/buildSrc/
+/buildSrc/build/
+/buildSrc/build/pluginUnderTestMetadata/
+
+
