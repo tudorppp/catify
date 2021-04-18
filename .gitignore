@@ -78,6 +78,7 @@ lint/tmp/
 /buildSrc/build/
 /buildSrc/
 /buildSrc/build/
+/buildSrc/build/
 /buildSrc/build/pluginUnderTestMetadata/
 
 
