@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -24,6 +25,10 @@ android {
         }
     }
 
+    buildFeatures {
+        dataBinding = true
+    }
+
     compileOptions {
         sourceCompatibility(JavaVersion.VERSION_1_8)
         targetCompatibility(JavaVersion.VERSION_1_8)
@@ -45,6 +50,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:${AppModuleVersions.AndroidX.lifecycle}")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${AppModuleVersions.AndroidX.lifecycle}")
     implementation("androidx.lifecycle:lifecycle-common-java8-ktx:${AppModuleVersions.AndroidX.lifecycle}")
+    implementation("androidx.lifecycle:lifecycle-common-java8:${AppModuleVersions.AndroidX.lifecycle}")
 
     implementation("com.google.android.material:material:${AppModuleVersions.materialComponentsVersion}")
 
