@@ -15,6 +15,7 @@ object AppModuleVersions {
     }
 
     const val materialComponentsVersion = "1.3.0"
+    const val daggerVersion = "2.38"
 }
 
 object CoreModuleVersions {

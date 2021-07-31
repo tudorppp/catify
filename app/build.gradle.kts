@@ -40,6 +40,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
+
     implementation("androidx.core:core-ktx:${AppModuleVersions.AndroidX.coreKtx}")
     implementation("androidx.appcompat:appcompat:${AppModuleVersions.AndroidX.appCompat}")
     implementation("androidx.constraintlayout:constraintlayout:${AppModuleVersions.AndroidX.constraintLayout}")
@@ -49,12 +51,15 @@ dependencies {
 
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:${AppModuleVersions.AndroidX.lifecycle}")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${AppModuleVersions.AndroidX.lifecycle}")
-    implementation("androidx.lifecycle:lifecycle-common-java8-ktx:${AppModuleVersions.AndroidX.lifecycle}")
     implementation("androidx.lifecycle:lifecycle-common-java8:${AppModuleVersions.AndroidX.lifecycle}")
 
     implementation("com.google.android.material:material:${AppModuleVersions.materialComponentsVersion}")
 
     testImplementation("androidx.arch.core:core-testing:${AppModuleVersions.AndroidX.testArch}")
+
+    implementation("com.google.dagger:dagger-android-support:${AppModuleVersions.daggerVersion}")
+    kapt("com.google.dagger:dagger-android-processor:${AppModuleVersions.daggerVersion}")
+    kapt("com.google.dagger:dagger-compiler:${AppModuleVersions.daggerVersion}")
 
     //TODO dependencies for testing
 }
