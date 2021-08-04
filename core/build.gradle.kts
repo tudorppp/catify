@@ -33,10 +33,17 @@ android {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${ProjectLevelVersions.kotlinVersion}")
 
-    api("com.google.dagger:dagger:${AppModuleVersions.daggerVersion}")
-    kapt("com.google.dagger:dagger-compiler:${AppModuleVersions.daggerVersion}")
+    //Dagger
+    api("com.google.dagger:dagger:${AppModuleVersions.dagger}")
+    kapt("com.google.dagger:dagger-compiler:${AppModuleVersions.dagger}")
+    kaptAndroidTest("com.google.dagger:dagger-compiler:${AppModuleVersions.dagger}")
+    kaptTest("com.google.dagger:dagger-compiler:${AppModuleVersions.dagger}")
 
-    //TODO dependencies for testing
-    kaptAndroidTest("com.google.dagger:dagger-compiler:${AppModuleVersions.daggerVersion}")
-    kaptTest("com.google.dagger:dagger-compiler:${AppModuleVersions.daggerVersion}")
+    //RxJava
+    api("io.reactivex.rxjava3:rxjava:${CoreModuleVersions.RXJava}")
+
+    //Networking
+    implementation("com.squareup.retrofit2:retrofit:${CoreModuleVersions.retrofit}")
+    implementation("com.squareup.okhttp3:okhttp:${CoreModuleVersions.okHttp}")
+    implementation("com.squareup.retrofit2:converter-moshi:${CoreModuleVersions.moshiConverter}")
 }

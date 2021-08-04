@@ -1,3 +1,19 @@
-  <resources>
+<resources>
+
+    <!--
+    Spacing (Margin & padding)
+    Note: Any multiple of 4 is a valid spacing
+    -->
+    <dimen name="s1x">4dp</dimen>
+    <dimen name="s2x">8dp</dimen>
+    <dimen name="s3x">12dp</dimen>
+    <dimen name="s4x">16dp</dimen>
+    <dimen name="s5x">20dp</dimen>
+    <dimen name="s6x">24dp</dimen>
+    <dimen name="s7x">28dp</dimen>
+    <dimen name="s8x">32dp</dimen>
+    <dimen name="s9x">36dp</dimen>
+    <dimen name="s10x">40dp</dimen>
+    <dimen name="s16x">64dp</dimen>
 
 </resources>

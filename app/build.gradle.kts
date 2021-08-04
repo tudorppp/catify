@@ -53,13 +53,15 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${AppModuleVersions.AndroidX.lifecycle}")
     implementation("androidx.lifecycle:lifecycle-common-java8:${AppModuleVersions.AndroidX.lifecycle}")
 
-    implementation("com.google.android.material:material:${AppModuleVersions.materialComponentsVersion}")
+    implementation("com.google.android.material:material:${AppModuleVersions.materialComponents}")
 
     testImplementation("androidx.arch.core:core-testing:${AppModuleVersions.AndroidX.testArch}")
 
-    implementation("com.google.dagger:dagger-android-support:${AppModuleVersions.daggerVersion}")
-    kapt("com.google.dagger:dagger-android-processor:${AppModuleVersions.daggerVersion}")
-    kapt("com.google.dagger:dagger-compiler:${AppModuleVersions.daggerVersion}")
+    implementation("androidx.security:security-crypto:${AppModuleVersions.AndroidX.securityCrypto}")
+
+    implementation("com.google.dagger:dagger-android-support:${AppModuleVersions.dagger}")
+    kapt("com.google.dagger:dagger-android-processor:${AppModuleVersions.dagger}")
+    kapt("com.google.dagger:dagger-compiler:${AppModuleVersions.dagger}")
 
     //TODO dependencies for testing
 }
