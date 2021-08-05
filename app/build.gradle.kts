@@ -59,9 +59,8 @@ dependencies {
 
     implementation("androidx.security:security-crypto:${AppModuleVersions.AndroidX.securityCrypto}")
 
-    implementation("com.google.dagger:dagger-android-support:${AppModuleVersions.dagger}")
-    kapt("com.google.dagger:dagger-android-processor:${AppModuleVersions.dagger}")
-    kapt("com.google.dagger:dagger-compiler:${AppModuleVersions.dagger}")
+    implementation("org.koin:koin-androidx-scope:${AppModuleVersions.koin}")
+    implementation("org.koin:koin-androidx-viewmodel:${AppModuleVersions.koin}")
 
     //TODO dependencies for testing
 }

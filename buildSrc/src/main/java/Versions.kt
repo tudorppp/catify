@@ -17,7 +17,7 @@ object AppModuleVersions {
     }
 
     const val materialComponents = "1.3.0"
-    const val dagger = "2.38"
+    const val koin = "2.2.2"
 }
 
 object CoreModuleVersions {

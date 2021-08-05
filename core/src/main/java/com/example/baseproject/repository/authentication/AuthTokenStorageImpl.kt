@@ -1,11 +1,10 @@
 package com.example.baseproject.repository.authentication
 
 import android.content.SharedPreferences
-import javax.inject.Inject
 
 internal const val KEY_AUTH_TOKEN = "AUTH_TOKEN"
 
-internal class AuthTokenPreferenceStorage @Inject constructor(private val authPrefs: SharedPreferences) :
+internal class AuthTokenPreferenceStorage(private val authPrefs: SharedPreferences) :
     AuthTokenStore {
 
     override fun getAuthToken(): String? {

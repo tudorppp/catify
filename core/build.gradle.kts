@@ -34,10 +34,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${ProjectLevelVersions.kotlinVersion}")
 
     //Dagger
-    api("com.google.dagger:dagger:${AppModuleVersions.dagger}")
-    kapt("com.google.dagger:dagger-compiler:${AppModuleVersions.dagger}")
-    kaptAndroidTest("com.google.dagger:dagger-compiler:${AppModuleVersions.dagger}")
-    kaptTest("com.google.dagger:dagger-compiler:${AppModuleVersions.dagger}")
+    implementation("org.koin:koin-core:${AppModuleVersions.koin}")
+    api("org.koin:koin-android:${AppModuleVersions.koin}")
 
     //RxJava
     api("io.reactivex.rxjava3:rxjava:${CoreModuleVersions.RXJava}")

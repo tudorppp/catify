@@ -3,12 +3,11 @@ package com.example.baseproject.networking
 import com.example.baseproject.repository.authentication.AuthTokenStore
 import okhttp3.Interceptor
 import okhttp3.Response
-import javax.inject.Inject
 
 private const val HEADER_AUTHORIZATION = "Authorization"
 private const val HEADER_CAT_API_KEY = "x-api-key"
 
-internal class HttpAuthenticationHeaderInterceptor @Inject constructor(private val tokenStorage: AuthTokenStore) :
+internal class HttpAuthenticationHeaderInterceptor(private val tokenStorage: AuthTokenStore) :
     Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {

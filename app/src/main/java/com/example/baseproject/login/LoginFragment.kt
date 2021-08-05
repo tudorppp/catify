@@ -10,7 +10,7 @@ import com.example.baseproject.shared.BaseFragment
 
 class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>(R.layout.fragment_login) {
 
-    override val viewModel by viewModels<LoginViewModel> { viewModelFactory }
+    override val viewModel by viewModels<LoginViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

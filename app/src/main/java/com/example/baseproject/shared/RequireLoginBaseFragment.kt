@@ -10,13 +10,12 @@ import com.example.baseproject.R
 import com.example.baseproject.login.LOGIN_STATE
 import com.example.baseproject.login.LoginState
 import com.example.baseproject.repository.authentication.AuthManager
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
 abstract class RequireLoginBaseFragment<VB : ViewDataBinding, VM : ViewModel>(@LayoutRes private val resId: Int) :
     BaseFragment<VB, VM>(resId) {
 
-    @Inject
-    lateinit var authManager: AuthManager
+    private val authManager: AuthManager by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
