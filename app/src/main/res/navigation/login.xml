@@ -11,4 +11,9 @@
         android:label="Login"
         tools:layout="@layout/fragment_login" />
 
+    <action
+        android:id="@+id/action_to_loginFragment"
+        app:destination="@id/loginFragment">
+    </action>
+
 </navigation>

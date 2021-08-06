@@ -32,7 +32,5 @@ internal val restModule = module {
 
     single { HttpAuthenticationHeaderInterceptor(get()) }
 
-    single<AuthTokenStore> { AuthTokenPreferenceStorage(get()) }
-
     single<StagingDataSource> { StagingDataSourceImpl() }
 }

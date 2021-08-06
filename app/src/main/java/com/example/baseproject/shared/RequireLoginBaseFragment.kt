@@ -5,7 +5,9 @@ import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import com.example.baseproject.LoginDirections
 import com.example.baseproject.R
 import com.example.baseproject.login.LOGIN_STATE
 import com.example.baseproject.login.LoginState
@@ -27,7 +29,7 @@ abstract class RequireLoginBaseFragment<VB : ViewDataBinding, VM : ViewModel>(@L
 
     private fun checkLoginStateAndRedirectIfNecessary() {
         if (!authManager.getLoginStatus()) {
-            findNavController().navigate(R.id.loginFragment)
+            NavHostFragment.findNavController(this).navigate(LoginDirections.actionToLoginFragment())
         }
     }
 
