@@ -18,6 +18,7 @@
             style="@style/TextInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:errorText="@{viewModel.usernameErrorText}"
             app:layout_constraintBottom_toTopOf="@id/password_text_layout"
             app:layout_constraintEnd_toEndOf="@id/end_guideline"
             app:layout_constraintStart_toStartOf="@id/start_guideline"
@@ -29,7 +30,8 @@
                 style="@style/TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/login_username_hint" />
+                android:hint="@string/login_username_hint"
+                android:text="@={viewModel.username}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -38,17 +40,21 @@
             style="@style/TextInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:errorText="@{viewModel.passwordErrorText}"
             app:layout_constraintBottom_toTopOf="@id/login_button"
             app:layout_constraintEnd_toEndOf="@id/end_guideline"
             app:layout_constraintStart_toStartOf="@id/start_guideline"
-            app:layout_constraintTop_toBottomOf="@id/username_text_layout">
+            app:layout_constraintTop_toBottomOf="@id/username_text_layout"
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password_text"
                 style="@style/TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/login_password_hint" />
+                android:hint="@string/login_password_hint"
+                android:inputType="textPassword"
+                android:text="@={viewModel.password}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,6 +64,7 @@
             marginBottomSystemWindowInsets="@{true}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onLoginClicked()}"
             android:text="@string/login_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/end_guideline"

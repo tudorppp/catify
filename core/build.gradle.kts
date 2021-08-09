@@ -42,6 +42,7 @@ dependencies {
 
     //Networking
     implementation("com.squareup.retrofit2:retrofit:${CoreModuleVersions.retrofit}")
-    implementation("com.squareup.okhttp3:okhttp:${CoreModuleVersions.okHttp}")
     implementation("com.squareup.retrofit2:converter-moshi:${CoreModuleVersions.moshiConverter}")
+    implementation("com.squareup.retrofit2:adapter-rxjava3:${CoreModuleVersions.retrofit}")
+    implementation("com.squareup.okhttp3:okhttp:${CoreModuleVersions.okHttp}")
 }

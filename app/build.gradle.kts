@@ -53,15 +53,16 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:${AppModuleVersions.AndroidX.lifecycle}")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${AppModuleVersions.AndroidX.lifecycle}")
     implementation("androidx.lifecycle:lifecycle-common-java8:${AppModuleVersions.AndroidX.lifecycle}")
+    implementation("androidx.security:security-crypto:${AppModuleVersions.AndroidX.securityCrypto}")
 
     implementation("com.google.android.material:material:${AppModuleVersions.materialComponents}")
 
-    testImplementation("androidx.arch.core:core-testing:${AppModuleVersions.AndroidX.testArch}")
-
-    implementation("androidx.security:security-crypto:${AppModuleVersions.AndroidX.securityCrypto}")
-
     implementation("org.koin:koin-androidx-scope:${AppModuleVersions.koin}")
     implementation("org.koin:koin-androidx-viewmodel:${AppModuleVersions.koin}")
+
+    implementation("io.reactivex.rxjava3:rxandroid:${CoreModuleVersions.RXJava}")
+
+    testImplementation("androidx.arch.core:core-testing:${AppModuleVersions.AndroidX.testArch}")
 
     //TODO dependencies for testing
 }

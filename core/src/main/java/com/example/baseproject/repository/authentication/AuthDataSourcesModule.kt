@@ -7,6 +7,9 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
+internal const val USERNAME_LOGIN_REPOSITORY = "usernameLoginRepository"
+internal const val USERNAME_LOGIN_REMOTE_DATA_SOURCE = "usernameLoginRemoteDataSource"
+
 internal val authDataSourceModule = module {
 
     single<UsernameLoginApi> { get<Retrofit>().create(UsernameLoginApi::class.java) }
@@ -15,7 +18,12 @@ internal val authDataSourceModule = module {
 
     single<AuthTokenStore> { AuthTokenPreferenceStorage(authPrefs = get()) }
 
-    factory<LoginRepository<AuthenticationMethod.Username>>(named("usernameLoginRepository")) { UsernameLoginRepositoryImpl(loginRemoteDataSource = get(named("usernameLoginRemoteDataSource"))) }
+    factory<LoginRepository<AuthenticationMethod.Username>>(named(USERNAME_LOGIN_REPOSITORY)) {
+        UsernameLoginRepositoryImpl(
+            loginRemoteDataSource = get(named(USERNAME_LOGIN_REMOTE_DATA_SOURCE)),
+            authTokenStore = get()
+        )
+    }
 
-    factory<UsernameLoginRemoteDataSourceImpl<Any?>>(named("usernameLoginRemoteDataSource")) { UsernameLoginRemoteDataSourceImpl<Any?>(usernameLoginApi = get()) }
+    factory(named(USERNAME_LOGIN_REMOTE_DATA_SOURCE)) { UsernameLoginRemoteDataSourceImpl(usernameLoginApi = get()) }
 }

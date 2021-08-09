@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.baseproject.LoginDirections
-import com.example.baseproject.R
 import com.example.baseproject.login.LOGIN_STATE
 import com.example.baseproject.login.LoginState
 import com.example.baseproject.repository.authentication.AuthManager
@@ -30,13 +29,24 @@ abstract class RequireLoginBaseFragment<VB : ViewDataBinding, VM : ViewModel>(@L
     private fun checkLoginStateAndRedirectIfNecessary() {
         if (!authManager.getLoginStatus()) {
             NavHostFragment.findNavController(this).navigate(LoginDirections.actionToLoginFragment())
+        } else {
+            doIfUserIsLoggedIn()
         }
     }
 
     private fun observeLoginState() {
         val savedStateHandle = findNavController().currentBackStackEntry?.savedStateHandle
         savedStateHandle?.getLiveData<LoginState>(LOGIN_STATE)?.observe(viewLifecycleOwner) {
-
+            when (it) {
+                LoginState.LoginSuccessful -> {
+                    doIfUserIsLoggedIn()
+                }
+                else -> {
+                    activity?.finish()
+                }
+            }
         }
     }
+
+    protected abstract fun doIfUserIsLoggedIn()
 }

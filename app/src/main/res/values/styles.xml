@@ -9,13 +9,14 @@
     </style>
 
     <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="hintTextColor">?attr/colorOnPrimary</item>
-        <item name="android:textColorHint">?attr/colorOnPrimary</item>
+        <item name="android:textColorHint">?attr/colorPrimary</item>
+        <item name="passwordToggleTint">?attr/colorPrimary</item>
         <item name="boxStrokeColor">@color/text_input_box_stroke</item>
     </style>
 
     <style name="TextInputEditText" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textColorHint">?attr/colorPrimary</item>
         <item name="android:maxLines">1</item>
     </style>
 

@@ -1,8 +1,5 @@
 package com.example.baseproject.home
 
-import android.os.Bundle
-import android.util.Log
-import android.view.View
 import com.example.baseproject.HomeFragmentBinding
 import com.example.baseproject.R
 import com.example.baseproject.shared.RequireLoginBaseFragment
@@ -12,9 +9,8 @@ class HomeFragment : RequireLoginBaseFragment<HomeFragmentBinding, HomeViewModel
 
     override val viewModel : HomeViewModel by viewModel()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        Log.d("dada", viewModel.toString())
+    override fun doIfUserIsLoggedIn() {
+        TODO("Not yet implemented")
     }
 
 }
