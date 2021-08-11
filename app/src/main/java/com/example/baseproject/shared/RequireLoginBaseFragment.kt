@@ -21,17 +21,17 @@ abstract class RequireLoginBaseFragment<VB : ViewDataBinding, VM : ViewModel>(@L
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        checkLoginStateAndRedirectIfNecessary()
+        checkLoginStateAndRedirectIfNecessary(savedInstanceState != null)
         observeLoginState()
 
     }
 
-    private fun checkLoginStateAndRedirectIfNecessary() {
-        if (!authManager.getLoginStatus()) {
-            NavHostFragment.findNavController(this).navigate(LoginDirections.actionToLoginFragment())
-        } else {
-            doIfUserIsLoggedIn()
-        }
+    private fun checkLoginStateAndRedirectIfNecessary(configurationChanged: Boolean) {
+//        if (!authManager.getLoginStatus()) {
+//            NavHostFragment.findNavController(this).navigate(LoginDirections.actionToLoginFragment())
+//        } else {
+        doIfUserIsLoggedIn(configurationChanged)
+        //}
     }
 
     private fun observeLoginState() {
@@ -48,5 +48,5 @@ abstract class RequireLoginBaseFragment<VB : ViewDataBinding, VM : ViewModel>(@L
         }
     }
 
-    protected abstract fun doIfUserIsLoggedIn()
+    protected abstract fun doIfUserIsLoggedIn(configurationChanged: Boolean = false)
 }

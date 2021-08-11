@@ -62,6 +62,10 @@ dependencies {
 
     implementation("io.reactivex.rxjava3:rxandroid:${CoreModuleVersions.RXJava}")
 
+    implementation("com.github.bumptech.glide:glide:${AppModuleVersions.glide}")
+    implementation("com.github.bumptech.glide:annotations:${AppModuleVersions.glide}")
+    annotationProcessor("com.github.bumptech.glide:compiler:${AppModuleVersions.glide}")
+
     testImplementation("androidx.arch.core:core-testing:${AppModuleVersions.AndroidX.testArch}")
 
     //TODO dependencies for testing

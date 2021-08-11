@@ -1,11 +1,11 @@
-package com.example.baseproject.repository.authentication.username
+package com.example.baseproject.networking.service
 
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
-interface UsernameLoginApi {
+interface UsernameLoginService {
 
     @FormUrlEncoded
     @POST("/login")

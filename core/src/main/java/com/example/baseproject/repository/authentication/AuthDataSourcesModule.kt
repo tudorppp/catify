@@ -1,6 +1,6 @@
 package com.example.baseproject.repository.authentication
 
-import com.example.baseproject.repository.authentication.username.UsernameLoginApi
+import com.example.baseproject.networking.service.UsernameLoginService
 import com.example.baseproject.repository.authentication.username.UsernameLoginRemoteDataSourceImpl
 import com.example.baseproject.repository.authentication.username.UsernameLoginRepositoryImpl
 import org.koin.core.qualifier.named
@@ -12,7 +12,7 @@ internal const val USERNAME_LOGIN_REMOTE_DATA_SOURCE = "usernameLoginRemoteDataS
 
 internal val authDataSourceModule = module {
 
-    single<UsernameLoginApi> { get<Retrofit>().create(UsernameLoginApi::class.java) }
+    single<UsernameLoginService> { get<Retrofit>().create(UsernameLoginService::class.java) }
 
     single<AuthManager> { AuthManagerImpl(tokenStore = get()) }
 
@@ -25,5 +25,5 @@ internal val authDataSourceModule = module {
         )
     }
 
-    factory(named(USERNAME_LOGIN_REMOTE_DATA_SOURCE)) { UsernameLoginRemoteDataSourceImpl(usernameLoginApi = get()) }
+    factory(named(USERNAME_LOGIN_REMOTE_DATA_SOURCE)) { UsernameLoginRemoteDataSourceImpl(usernameLoginService = get()) }
 }

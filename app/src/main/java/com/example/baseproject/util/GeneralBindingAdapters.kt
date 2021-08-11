@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
+import androidx.core.view.isGone
 import androidx.core.view.updateLayoutParams
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
@@ -26,4 +27,9 @@ fun View.applySystemWindows(applyStart: Boolean, applyEnd: Boolean, applyTop: Bo
         }
         insets
     }
+}
+
+@BindingAdapter("app:visible")
+fun View.visibleOrGone(isVisible: Boolean) {
+    this.isGone = !isVisible
 }

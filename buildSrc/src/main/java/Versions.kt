@@ -13,9 +13,10 @@ object AppModuleVersions {
         const val lifecycle = "2.3.1"
         const val testArch = "2.1.0"
         const val securityCrypto = "1.0.0"
-
+        const val paging = "3.0.1"
     }
 
+    const val glide = "4.12.0"
     const val materialComponents = "1.3.0"
     const val koin = "2.2.2"
 }
@@ -24,5 +25,5 @@ object CoreModuleVersions {
     const val RXJava = "3.0.0"
     const val retrofit = "2.9.0"
     const val okHttp = "4.9.0"
-    const val moshiConverter = "2.6.0"
+    const val gson = "2.9.0"
 }

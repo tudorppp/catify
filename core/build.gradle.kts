@@ -42,7 +42,11 @@ dependencies {
 
     //Networking
     implementation("com.squareup.retrofit2:retrofit:${CoreModuleVersions.retrofit}")
-    implementation("com.squareup.retrofit2:converter-moshi:${CoreModuleVersions.moshiConverter}")
     implementation("com.squareup.retrofit2:adapter-rxjava3:${CoreModuleVersions.retrofit}")
     implementation("com.squareup.okhttp3:okhttp:${CoreModuleVersions.okHttp}")
+    implementation("com.squareup.retrofit2:converter-gson:${CoreModuleVersions.gson}")
+
+    //Paging
+    api("androidx.paging:paging-runtime:${AppModuleVersions.AndroidX.paging}")
+    api("androidx.paging:paging-rxjava3:${AppModuleVersions.AndroidX.paging}")
 }

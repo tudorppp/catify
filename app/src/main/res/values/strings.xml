@@ -10,4 +10,5 @@
     <string name="unknown_error">Ooops! Something went wrong</string>
     <string name="no_internet_error">It seems you don\'t have an internet connection!</string>
     <string name="snackbar_retry">Retry</string>
+    <string name="retry">Retry</string>
 </resources>
