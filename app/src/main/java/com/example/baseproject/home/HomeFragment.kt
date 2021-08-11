@@ -1,5 +1,10 @@
 package com.example.baseproject.home
 
+import android.os.Bundle
+import android.view.View
+import androidx.core.view.doOnPreDraw
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.example.baseproject.HomeFragmentBinding
 import com.example.baseproject.R
@@ -8,9 +13,11 @@ import com.example.baseproject.errors.asError
 import com.example.baseproject.shared.RequireLoginBaseFragment
 import com.example.baseproject.util.MarginItemDecoration
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.transition.MaterialElevationScale
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@ExperimentalCoroutinesApi
 class HomeFragment : RequireLoginBaseFragment<HomeFragmentBinding, HomeViewModel>(R.layout.fragment_home) {
 
     override val viewModel: HomeViewModel by viewModel()
@@ -18,8 +25,8 @@ class HomeFragment : RequireLoginBaseFragment<HomeFragmentBinding, HomeViewModel
     private lateinit var adapter: CatBreedAdapter
     private lateinit var loaderAdapter: LoaderStateAdapter
 
-    @ExperimentalCoroutinesApi
-    override fun doIfUserIsLoggedIn(configurationChanged: Boolean) {
+    override fun doIfUserIsLoggedIn(view: View, savedInstanceState: Bundle?) {
+        prepareReturnTransition(view)
         initAdapters()
         with(binding) {
             recyclerView.adapter = adapter.withLoadStateFooter(loaderAdapter)
@@ -33,13 +40,15 @@ class HomeFragment : RequireLoginBaseFragment<HomeFragmentBinding, HomeViewModel
                 adapter.submitData(viewLifecycleOwner.lifecycle, it)
             }
         }
-        if (!configurationChanged) {
-            viewModel.fetchCats()
-        }
+    }
+
+    private fun prepareReturnTransition(view: View) {
+        postponeEnterTransition()
+        view.doOnPreDraw { startPostponedEnterTransition() }
     }
 
     private fun initAdapters() {
-        adapter = CatBreedAdapter().also {
+        adapter = CatBreedAdapter(::onBreedClicked).also {
             it.addLoadStateListener { loadState ->
                 when (val result = loadState.source.refresh) {
                     is LoadState.NotLoading -> viewModel.setState(HomeViewModel.State.Loaded)
@@ -57,6 +66,19 @@ class HomeFragment : RequireLoginBaseFragment<HomeFragmentBinding, HomeViewModel
             { adapter.retry() },
             { displayError(it.error.asError()) }
         )
+    }
+
+    private fun onBreedClicked(cardView: View, breedId: String) {
+        val breedDetailCardTransitionName = getString(R.string.breed_card_transition_name)
+        val extras = FragmentNavigatorExtras(cardView to breedDetailCardTransitionName)
+        val directions = HomeFragmentDirections.actionHomeFragmentToBreedDetailFragment(breedId)
+        exitTransition = MaterialElevationScale(false).apply {
+            duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
+        }
+        reenterTransition = MaterialElevationScale(true).apply {
+            duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
+        }
+        findNavController().navigate(directions, extras)
     }
 
     private fun displayError(error: ErrorType) {

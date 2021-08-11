@@ -12,6 +12,7 @@ import com.example.baseproject.usecase.GetCatBreedsUseCase
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 class HomeViewModel(private val getCatBreedsUseCase: GetCatBreedsUseCase) : BaseRxViewModel() {
 
     private val _catBreeds = MutableLiveData<PagingData<CatBreedUIModel>>()
@@ -25,8 +26,11 @@ class HomeViewModel(private val getCatBreedsUseCase: GetCatBreedsUseCase) : Base
 
     val isError: LiveData<Boolean> = _state.map { it == State.Error }
 
-    @ExperimentalCoroutinesApi
-    fun fetchCats() {
+    init {
+        fetchCats()
+    }
+
+    private fun fetchCats() {
         _state.value = State.Loading
         disposable.add(
             getCatBreedsUseCase()

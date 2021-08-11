@@ -1,4 +1,4 @@
-package com.example.baseproject.repository.cats
+package com.example.baseproject.repository.breed
 
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -9,6 +9,8 @@ private const val PAGE_SIZE = 20
 private const val INITIAL_PAGE_SIZE = 10
 
 internal interface CatBreedRepository {
+
+    fun getBreedById(breedId: String): Breed
 
     fun getBreeds(pageConfig: PagingConfig = getDefaultPageConfig()): Flowable<PagingData<Breed>>
 

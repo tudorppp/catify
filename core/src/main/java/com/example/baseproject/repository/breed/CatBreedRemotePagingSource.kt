@@ -1,4 +1,4 @@
-package com.example.baseproject.repository.cats
+package com.example.baseproject.repository.breed
 
 import androidx.paging.PagingState
 import androidx.paging.rxjava3.RxPagingSource

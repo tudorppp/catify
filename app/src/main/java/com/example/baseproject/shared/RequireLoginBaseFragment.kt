@@ -21,25 +21,26 @@ abstract class RequireLoginBaseFragment<VB : ViewDataBinding, VM : ViewModel>(@L
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        checkLoginStateAndRedirectIfNecessary(savedInstanceState != null)
-        observeLoginState()
+        checkLoginStateAndRedirectIfNecessary(view, savedInstanceState)
+        observeLoginState(view, savedInstanceState)
 
     }
 
-    private fun checkLoginStateAndRedirectIfNecessary(configurationChanged: Boolean) {
+    private fun checkLoginStateAndRedirectIfNecessary(view: View, savedInstanceState: Bundle?) {
+        //TODO
 //        if (!authManager.getLoginStatus()) {
 //            NavHostFragment.findNavController(this).navigate(LoginDirections.actionToLoginFragment())
 //        } else {
-        doIfUserIsLoggedIn(configurationChanged)
+        doIfUserIsLoggedIn(view, savedInstanceState)
         //}
     }
 
-    private fun observeLoginState() {
+    private fun observeLoginState(view: View, savedInstanceState: Bundle?) {
         val savedStateHandle = findNavController().currentBackStackEntry?.savedStateHandle
         savedStateHandle?.getLiveData<LoginState>(LOGIN_STATE)?.observe(viewLifecycleOwner) {
             when (it) {
                 LoginState.LoginSuccessful -> {
-                    doIfUserIsLoggedIn()
+                    doIfUserIsLoggedIn(view, savedInstanceState)
                 }
                 else -> {
                     activity?.finish()
@@ -48,5 +49,5 @@ abstract class RequireLoginBaseFragment<VB : ViewDataBinding, VM : ViewModel>(@L
         }
     }
 
-    protected abstract fun doIfUserIsLoggedIn(configurationChanged: Boolean = false)
+    protected abstract fun doIfUserIsLoggedIn(view: View, savedInstanceState: Bundle?)
 }

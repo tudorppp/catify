@@ -1,26 +1,31 @@
 package com.example.baseproject.home
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.baseproject.databinding.ItemCatBinding
+import com.example.baseproject.databinding.ItemBreedLayoutBinding
 
-class CatBreedAdapter : PagingDataAdapter<CatBreedUIModel, RecyclerView.ViewHolder>(COMPARATOR) {
+class CatBreedAdapter(private val onItemClicked: (View, String) -> Unit) :
+    PagingDataAdapter<CatBreedUIModel, RecyclerView.ViewHolder>(COMPARATOR) {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as? CatBreedViewHolder)?.bind(item = getItem(position))
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return CatBreedViewHolder(ItemCatBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-            .also {
-                //TODO here set the click listener
+        return CatBreedViewHolder(ItemBreedLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            .also { holder ->
+                holder.binding.cardView.setOnClickListener {
+                    onItemClicked(holder.binding.cardView, holder.binding.catModelUi!!.id)
+                }
             }
     }
 
-    private class CatBreedViewHolder(private val binding: ItemCatBinding) : RecyclerView.ViewHolder(binding.root) {
+    private class CatBreedViewHolder(val binding: ItemBreedLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: CatBreedUIModel?) {
             item?.let {
