@@ -17,7 +17,7 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>(R.layou
         super.onViewCreated(view, savedInstanceState)
         val navController = findNavController()
         val savedStateHandle = navController.previousBackStackEntry?.savedStateHandle
-        savedStateHandle?.set(LOGIN_STATE, LoginState.LoginFailed.toString())
+        savedStateHandle?.set(LOGIN_STATE, LoginState.LoginFailed)
 
         with(viewModel) {
             state.observe(viewLifecycleOwner) {
@@ -28,7 +28,6 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>(R.layou
                         } else if (result.errorMessage != null) {
                             showSnackBar(result.errorMessage, Snackbar.LENGTH_SHORT)
                         }
-                        savedStateHandle?.set(LOGIN_STATE, LoginState.LoginFailed)
                     }
                     LoginViewModel.State.LoginSucceeded -> {
                         savedStateHandle?.set(LOGIN_STATE, LoginState.LoginSuccessful)

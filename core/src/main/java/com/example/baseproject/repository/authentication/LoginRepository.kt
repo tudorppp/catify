@@ -6,6 +6,6 @@ internal interface LoginRepository<AM : AuthenticationMethod> {
 
     fun login(authenticationMethod: AM): Completable
 
-    fun logout()
+    fun logout(): Completable
 
 }

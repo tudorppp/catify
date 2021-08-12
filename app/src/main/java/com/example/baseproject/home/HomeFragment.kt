@@ -1,7 +1,8 @@
 package com.example.baseproject.home
 
 import android.os.Bundle
-import android.view.View
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.doOnPreDraw
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
@@ -28,6 +29,7 @@ class HomeFragment : RequireLoginBaseFragment<HomeFragmentBinding, HomeViewModel
     override fun doIfUserIsLoggedIn(view: View, savedInstanceState: Bundle?) {
         prepareReturnTransition(view)
         initAdapters()
+        setToolbar()
         with(binding) {
             recyclerView.adapter = adapter.withLoadStateFooter(loaderAdapter)
             recyclerView.addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.s3x).toInt()))
@@ -39,7 +41,25 @@ class HomeFragment : RequireLoginBaseFragment<HomeFragmentBinding, HomeViewModel
             catBreeds.observe(viewLifecycleOwner) {
                 adapter.submitData(viewLifecycleOwner.lifecycle, it)
             }
+            logoutState.observe(viewLifecycleOwner) {
+                when (val result = it.consume()) {
+                    is HomeViewModel.State.Logout.Failed -> {
+                        if (result.errorId != null) {
+                            showSnackBar(result.errorId, Snackbar.LENGTH_SHORT)
+                        } else if (result.errorMessage != null) {
+                            showSnackBar(result.errorMessage, Snackbar.LENGTH_SHORT)
+                        }
+                    }
+                    HomeViewModel.State.Logout.Success ->
+                        findNavController().navigate(HomeFragmentDirections.actionToLoginFragment())
+                }
+            }
         }
+    }
+
+    private fun setToolbar() {
+        (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
+        setHasOptionsMenu(true)
     }
 
     private fun prepareReturnTransition(view: View) {
@@ -88,4 +108,20 @@ class HomeFragment : RequireLoginBaseFragment<HomeFragmentBinding, HomeViewModel
             ErrorType.Unknown -> showSnackBar(R.string.unknown_error, Snackbar.LENGTH_SHORT)
         }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.home_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.logout -> {
+                viewModel.logout()
+                return true
+            }
+        }
+        return false
+    }
+
 }

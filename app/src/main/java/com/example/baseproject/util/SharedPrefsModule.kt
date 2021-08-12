@@ -1,6 +1,5 @@
 package com.example.baseproject.util
 
-import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import org.koin.dsl.module

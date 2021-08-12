@@ -10,37 +10,41 @@ import androidx.navigation.fragment.findNavController
 import com.example.baseproject.LoginDirections
 import com.example.baseproject.login.LOGIN_STATE
 import com.example.baseproject.login.LoginState
-import com.example.baseproject.repository.authentication.AuthManager
-import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 abstract class RequireLoginBaseFragment<VB : ViewDataBinding, VM : ViewModel>(@LayoutRes private val resId: Int) :
     BaseFragment<VB, VM>(resId) {
 
-    private val authManager: AuthManager by inject()
+    private val requireLoginViewModel: RequireLoginViewModel by viewModel()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        observeLoginState()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        checkLoginStateAndRedirectIfNecessary(view, savedInstanceState)
-        observeLoginState(view, savedInstanceState)
-
+        with(requireLoginViewModel) {
+            checkLoginState()
+            loginState.observe(viewLifecycleOwner) {
+                when (it) {
+                    true -> doIfUserIsLoggedIn(view, savedInstanceState)
+                    false -> {
+                        NavHostFragment.findNavController(this@RequireLoginBaseFragment)
+                            .navigate(LoginDirections.actionToLoginFragment())
+                    }
+                }
+            }
+        }
     }
 
-    private fun checkLoginStateAndRedirectIfNecessary(view: View, savedInstanceState: Bundle?) {
-        //TODO
-//        if (!authManager.getLoginStatus()) {
-//            NavHostFragment.findNavController(this).navigate(LoginDirections.actionToLoginFragment())
-//        } else {
-        doIfUserIsLoggedIn(view, savedInstanceState)
-        //}
-    }
-
-    private fun observeLoginState(view: View, savedInstanceState: Bundle?) {
-        val savedStateHandle = findNavController().currentBackStackEntry?.savedStateHandle
-        savedStateHandle?.getLiveData<LoginState>(LOGIN_STATE)?.observe(viewLifecycleOwner) {
+    private fun observeLoginState() {
+        val currentBackStackEntry = findNavController().currentBackStackEntry
+        val savedStateHandle = currentBackStackEntry?.savedStateHandle
+        savedStateHandle?.getLiveData<LoginState>(LOGIN_STATE)?.observe(currentBackStackEntry) {
             when (it) {
                 LoginState.LoginSuccessful -> {
-                    doIfUserIsLoggedIn(view, savedInstanceState)
                 }
                 else -> {
                     activity?.finish()

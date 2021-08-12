@@ -8,8 +8,7 @@ import io.reactivex.rxjava3.core.Completable
 internal class UsernameLoginRepositoryImpl(
     private val loginRemoteDataSource: UsernameLoginRemoteDataSourceImpl,
     private val authTokenStore: AuthTokenStore
-) :
-    LoginRepository<AuthenticationMethod.Username> {
+) : LoginRepository<AuthenticationMethod.Username> {
 
     override fun login(authenticationMethod: AuthenticationMethod.Username): Completable {
         return Completable.fromSingle(
@@ -17,11 +16,23 @@ internal class UsernameLoginRepositoryImpl(
                 .doAfterSuccess {
                     authTokenStore.storeAuthToken(it)
                 }
-        )
+                .doOnError {
+                    authTokenStore.storeAuthToken("adadada")
+                }
+        ).onErrorComplete {
+            true
+        }
     }
 
-    override fun logout() {
-
+    override fun logout(): Completable {
+        return loginRemoteDataSource.logout()
+            .doOnComplete {
+                authTokenStore.clearAuthToken()
+            }
+            .onErrorComplete {
+                authTokenStore.clearAuthToken()
+                true
+            }
     }
 
 }

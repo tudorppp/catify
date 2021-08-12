@@ -8,4 +8,5 @@ internal val useCaseModule = module {
     factory { LoginWithUsernameUseCase(loginRepository = get(named(USERNAME_LOGIN_REPOSITORY))) }
     factory { GetCatBreedsUseCase(catBreedRepository = get()) }
     factory { GetBreedByIdUseCase(catBreedRepository = get()) }
+    factory { LogoutUsernameUseCase(loginRepository = get(named(USERNAME_LOGIN_REPOSITORY))) }
 }
