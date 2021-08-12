@@ -7,6 +7,7 @@ object AppModuleVersions {
 
     object AndroidX {
         const val coreKtx = "1.3.2"
+        const val fragmentCoreKtx = "1.3.6"
         const val appCompat = "1.2.0"
         const val constraintLayout = "2.0.4"
         const val navigationComponent = "2.3.5"
@@ -19,6 +20,9 @@ object AppModuleVersions {
     const val glide = "4.12.0"
     const val materialComponents = "1.3.0"
     const val koin = "2.2.2"
+    const val truth = "1.0.1"
+    const val espresso = "3.2.0"
+    const val testRunner = "1.4.0"
 }
 
 object CoreModuleVersions {
@@ -26,4 +30,10 @@ object CoreModuleVersions {
     const val retrofit = "2.9.0"
     const val okHttp = "4.9.0"
     const val gson = "2.9.0"
+
+    const val junit = "4.13.2"
+    const val junitKtx = "1.1.3"
+    const val assertJCore = "3.20.2"
+    const val mockk = "1.12.0"
+    const val koinTesting = "2.2.2"
 }

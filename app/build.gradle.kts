@@ -57,8 +57,8 @@ dependencies {
 
     implementation("com.google.android.material:material:${AppModuleVersions.materialComponents}")
 
-    implementation("org.koin:koin-androidx-scope:${AppModuleVersions.koin}")
-    implementation("org.koin:koin-androidx-viewmodel:${AppModuleVersions.koin}")
+    implementation("io.insert-koin:koin-androidx-scope:${AppModuleVersions.koin}")
+    implementation("io.insert-koin:koin-androidx-viewmodel:${AppModuleVersions.koin}")
 
     implementation("io.reactivex.rxjava3:rxandroid:${CoreModuleVersions.RXJava}")
 
@@ -66,7 +66,14 @@ dependencies {
     implementation("com.github.bumptech.glide:annotations:${AppModuleVersions.glide}")
     annotationProcessor("com.github.bumptech.glide:compiler:${AppModuleVersions.glide}")
 
-    testImplementation("androidx.arch.core:core-testing:${AppModuleVersions.AndroidX.testArch}")
+    androidTestImplementation("androidx.arch.core:core-testing:${AppModuleVersions.AndroidX.testArch}")
+    androidTestImplementation("androidx.test.ext:junit-ktx:${CoreModuleVersions.junitKtx}")
+    androidTestImplementation("org.assertj:assertj-core:${CoreModuleVersions.assertJCore}")
 
-    //TODO dependencies for testing
+    androidTestImplementation("androidx.navigation:navigation-testing:${AppModuleVersions.AndroidX.navigationComponent}")
+    implementation("androidx.fragment:fragment-testing:${AppModuleVersions.AndroidX.coreKtx}")
+    androidTestImplementation("com.google.truth:truth:${AppModuleVersions.truth}")
+    androidTestImplementation("androidx.test.espresso:espresso-core:${AppModuleVersions.espresso}")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:${AppModuleVersions.espresso}")
+    androidTestImplementation("androidx.test.espresso:espresso-intents:${AppModuleVersions.espresso}")
 }
