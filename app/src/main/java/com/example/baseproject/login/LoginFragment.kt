@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.baseproject.LoginFragmentBinding
 import com.example.baseproject.R
 import com.example.baseproject.shared.BaseFragment
+import com.example.baseproject.util.closeKeyboard
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -30,6 +31,7 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>(R.layou
                         }
                     }
                     LoginViewModel.State.LoginSucceeded -> {
+                        binding.loginButton.closeKeyboard()
                         savedStateHandle?.set(LOGIN_STATE, LoginState.LoginSuccessful)
                         navController.popBackStack()
                     }
