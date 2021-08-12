@@ -82,10 +82,7 @@ class HomeFragment : RequireLoginBaseFragment<HomeFragmentBinding, HomeViewModel
                 }
             }
         }
-        loaderAdapter = LoaderStateAdapter(
-            { adapter.retry() },
-            { displayError(it.error.asError()) }
-        )
+        loaderAdapter = LoaderStateAdapter({ adapter.retry() }, { displayError(it.error.asError()) })
     }
 
     private fun onBreedClicked(cardView: View, breedId: String) {

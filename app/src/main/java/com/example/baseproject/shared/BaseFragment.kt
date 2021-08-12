@@ -11,7 +11,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import com.example.baseproject.BR
-import com.example.baseproject.MainActivity
 import com.example.baseproject.R
 import com.example.baseproject.util.autoCleared
 import com.google.android.material.snackbar.Snackbar

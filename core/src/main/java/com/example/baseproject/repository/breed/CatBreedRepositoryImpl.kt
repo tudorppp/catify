@@ -6,7 +6,6 @@ import com.example.baseproject.model.entity.Breed
 import com.example.baseproject.model.mapper.toEntity
 import com.example.baseproject.networking.service.CatsService
 import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 internal class CatBreedRepositoryImpl(
