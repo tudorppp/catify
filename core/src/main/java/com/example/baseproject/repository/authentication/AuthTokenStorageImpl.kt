@@ -16,7 +16,6 @@ internal class AuthTokenPreferenceStorage(private val authPrefs: SharedPreferenc
             .edit()
             .putString(KEY_AUTH_TOKEN, token)
             .apply()
-        //TODO broadcast?
     }
 
     override fun clearAuthToken() {
@@ -24,7 +23,6 @@ internal class AuthTokenPreferenceStorage(private val authPrefs: SharedPreferenc
             .edit()
             .remove(KEY_AUTH_TOKEN)
             .apply()
-        //TODO braodcast?
     }
 
     //TODO sup with this ? where should it be added?

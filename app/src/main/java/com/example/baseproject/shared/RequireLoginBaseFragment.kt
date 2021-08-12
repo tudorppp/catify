@@ -25,18 +25,11 @@ abstract class RequireLoginBaseFragment<VB : ViewDataBinding, VM : ViewModel>(@L
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with(requireLoginViewModel) {
-            checkLoginState()
-            loginState.observe(viewLifecycleOwner) {
-                when (it) {
-                    true -> doIfUserIsLoggedIn(view, savedInstanceState)
-                    false -> {
-                        NavHostFragment.findNavController(this@RequireLoginBaseFragment)
-                            .navigate(LoginDirections.actionToLoginFragment())
-                    }
-                }
-            }
-        }
+        if (requireLoginViewModel.isUserLoggedIn())
+            doIfUserIsLoggedIn(view, savedInstanceState)
+        else
+            NavHostFragment.findNavController(this@RequireLoginBaseFragment)
+                .navigate(LoginDirections.actionToLoginFragment())
     }
 
     private fun observeLoginState() {
