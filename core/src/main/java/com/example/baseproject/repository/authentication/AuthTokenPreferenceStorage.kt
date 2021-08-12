@@ -25,7 +25,6 @@ internal class AuthTokenPreferenceStorage(private val authPrefs: SharedPreferenc
             .apply()
     }
 
-    //TODO sup with this ? where should it be added?
     override fun getAPIDefaultAuthToken(): String {
         return "f0bc032d-df28-4c62-81b5-ca74aa735164"
     }
