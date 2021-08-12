@@ -43,37 +43,39 @@ android {
 dependencies {
     implementation(project(":core"))
 
-    implementation("androidx.core:core-ktx:${AppModuleVersions.AndroidX.coreKtx}")
-    implementation("androidx.appcompat:appcompat:${AppModuleVersions.AndroidX.appCompat}")
-    implementation("androidx.constraintlayout:constraintlayout:${AppModuleVersions.AndroidX.constraintLayout}")
+    implementation("androidx.core:core-ktx:${Version.AndroidX.coreKtx}")
+    implementation("androidx.appcompat:appcompat:${Version.AndroidX.appCompat}")
+    implementation("androidx.constraintlayout:constraintlayout:${Version.AndroidX.constraintLayout}")
 
-    implementation("androidx.navigation:navigation-fragment-ktx:${AppModuleVersions.AndroidX.navigationComponent}")
-    implementation("androidx.navigation:navigation-ui-ktx:${AppModuleVersions.AndroidX.navigationComponent}")
+    implementation("androidx.navigation:navigation-fragment-ktx:${Version.AndroidX.navigationComponent}")
+    implementation("androidx.navigation:navigation-ui-ktx:${Version.AndroidX.navigationComponent}")
 
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:${AppModuleVersions.AndroidX.lifecycle}")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${AppModuleVersions.AndroidX.lifecycle}")
-    implementation("androidx.lifecycle:lifecycle-common-java8:${AppModuleVersions.AndroidX.lifecycle}")
-    implementation("androidx.security:security-crypto:${AppModuleVersions.AndroidX.securityCrypto}")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:${Version.AndroidX.lifecycle}")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Version.AndroidX.lifecycle}")
+    implementation("androidx.lifecycle:lifecycle-common-java8:${Version.AndroidX.lifecycle}")
+    implementation("androidx.security:security-crypto:${Version.AndroidX.securityCrypto}")
+    
+    implementation("androidx.fragment:fragment-testing:${Version.AndroidX.coreKtx}")
 
-    implementation("com.google.android.material:material:${AppModuleVersions.materialComponents}")
+    implementation("com.google.android.material:material:${Version.materialComponents}")
 
-    implementation("io.insert-koin:koin-androidx-scope:${AppModuleVersions.koin}")
-    implementation("io.insert-koin:koin-androidx-viewmodel:${AppModuleVersions.koin}")
+    implementation("io.insert-koin:koin-androidx-scope:${Version.koin}")
+    implementation("io.insert-koin:koin-androidx-viewmodel:${Version.koin}")
 
-    implementation("io.reactivex.rxjava3:rxandroid:${CoreModuleVersions.RXJava}")
+    implementation("io.reactivex.rxjava3:rxandroid:${Version.RXJava}")
 
-    implementation("com.github.bumptech.glide:glide:${AppModuleVersions.glide}")
-    implementation("com.github.bumptech.glide:annotations:${AppModuleVersions.glide}")
-    annotationProcessor("com.github.bumptech.glide:compiler:${AppModuleVersions.glide}")
+    implementation("com.github.bumptech.glide:glide:${Version.glide}")
+    implementation("com.github.bumptech.glide:annotations:${Version.glide}")
+    annotationProcessor("com.github.bumptech.glide:compiler:${Version.glide}")
 
-    androidTestImplementation("androidx.arch.core:core-testing:${AppModuleVersions.AndroidX.testArch}")
-    androidTestImplementation("androidx.test.ext:junit-ktx:${CoreModuleVersions.junitKtx}")
-    androidTestImplementation("org.assertj:assertj-core:${CoreModuleVersions.assertJCore}")
 
-    androidTestImplementation("androidx.navigation:navigation-testing:${AppModuleVersions.AndroidX.navigationComponent}")
-    implementation("androidx.fragment:fragment-testing:${AppModuleVersions.AndroidX.coreKtx}")
-    androidTestImplementation("com.google.truth:truth:${AppModuleVersions.truth}")
-    androidTestImplementation("androidx.test.espresso:espresso-core:${AppModuleVersions.espresso}")
-    androidTestImplementation("androidx.test.espresso:espresso-contrib:${AppModuleVersions.espresso}")
-    androidTestImplementation("androidx.test.espresso:espresso-intents:${AppModuleVersions.espresso}")
+    androidTestImplementation("androidx.arch.core:core-testing:${Version.AndroidX.testArch}")
+    androidTestImplementation("androidx.test.ext:junit-ktx:${Version.Test.junitKtx}")
+    androidTestImplementation("org.assertj:assertj-core:${Version.Test.assertJCore}")
+
+    androidTestImplementation("androidx.navigation:navigation-testing:${Version.AndroidX.navigationComponent}")
+    androidTestImplementation("com.google.truth:truth:${Version.Test.truth}")
+    androidTestImplementation("androidx.test.espresso:espresso-core:${Version.Test.espresso}")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:${Version.Test.espresso}")
+    androidTestImplementation("androidx.test.espresso:espresso-intents:${Version.Test.espresso}")
 }

@@ -37,32 +37,27 @@ android {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${ProjectLevelVersions.kotlinVersion}")
 
-    //Dagger
-    implementation("io.insert-koin:koin-core:${AppModuleVersions.koin}")
-    api("io.insert-koin:koin-android:${AppModuleVersions.koin}")
+    implementation("io.insert-koin:koin-core:${Version.koin}")
+    api("io.insert-koin:koin-android:${Version.koin}")
 
-    //RxJava
-    api("io.reactivex.rxjava3:rxjava:${CoreModuleVersions.RXJava}")
+    api("io.reactivex.rxjava3:rxjava:${Version.RXJava}")
 
-    //Networking
-    implementation("com.squareup.retrofit2:retrofit:${CoreModuleVersions.retrofit}")
-    implementation("com.squareup.retrofit2:adapter-rxjava3:${CoreModuleVersions.retrofit}")
-    implementation("com.squareup.okhttp3:okhttp:${CoreModuleVersions.okHttp}")
-    implementation("com.squareup.retrofit2:converter-gson:${CoreModuleVersions.gson}")
+    implementation("com.squareup.retrofit2:retrofit:${Version.retrofit}")
+    implementation("com.squareup.retrofit2:adapter-rxjava3:${Version.retrofit}")
+    implementation("com.squareup.okhttp3:okhttp:${Version.okHttp}")
+    implementation("com.squareup.retrofit2:converter-gson:${Version.gson}")
 
-    //Paging
-    api("androidx.paging:paging-runtime:${AppModuleVersions.AndroidX.paging}")
-    api("androidx.paging:paging-rxjava3:${AppModuleVersions.AndroidX.paging}")
+    api("androidx.paging:paging-runtime:${Version.AndroidX.paging}")
+    api("androidx.paging:paging-rxjava3:${Version.AndroidX.paging}")
 
-    //Testing
 
-    testImplementation("junit:junit:${CoreModuleVersions.junit}")
-    testImplementation("io.mockk:mockk:${CoreModuleVersions.mockk}")
-    testImplementation("org.assertj:assertj-core:${CoreModuleVersions.assertJCore}")
-    testImplementation("io.insert-koin:koin-test:${CoreModuleVersions.koinTesting}")
+    testImplementation("junit:junit:${Version.Test.junit}")
+    testImplementation("io.mockk:mockk:${Version.Test.mockk}")
+    testImplementation("org.assertj:assertj-core:${Version.Test.assertJCore}")
+    testImplementation("io.insert-koin:koin-test:${Version.Test.koinTesting}")
 
-    androidTestImplementation("androidx.test.ext:junit-ktx:${CoreModuleVersions.junitKtx}")
-    androidTestImplementation("io.insert-koin:koin-test:${CoreModuleVersions.koinTesting}")
-    androidTestImplementation("org.assertj:assertj-core:${CoreModuleVersions.assertJCore}")
-    androidTestImplementation("androidx.test:runner:${AppModuleVersions.testRunner}")
+    androidTestImplementation("androidx.test.ext:junit-ktx:${Version.Test.junitKtx}")
+    androidTestImplementation("io.insert-koin:koin-test:${Version.Test.koinTesting}")
+    androidTestImplementation("org.assertj:assertj-core:${Version.Test.assertJCore}")
+    androidTestImplementation("androidx.test:runner:${Version.Test.testRunner}")
 }

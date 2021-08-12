@@ -4,6 +4,8 @@ import com.example.baseproject.repository.authentication.AuthTokenStore
 import com.example.baseproject.repository.authentication.AuthenticationMethod
 import com.example.baseproject.repository.authentication.LoginRepository
 import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Single
+import java.util.*
 
 internal class UsernameLoginRepositoryImpl(
     private val loginRemoteDataSource: UsernameLoginRemoteDataSourceImpl,
@@ -16,9 +18,7 @@ internal class UsernameLoginRepositoryImpl(
                 .doAfterSuccess {
                     authTokenStore.storeAuthToken(it)
                 }
-                .doOnError {
-                    authTokenStore.storeAuthToken("adadada")
-                }
+                .handleErrorsOnLogin()
         ).onErrorComplete {
             true
         }
@@ -33,6 +33,13 @@ internal class UsernameLoginRepositoryImpl(
                 authTokenStore.clearAuthToken()
                 true
             }
+    }
+
+    //TODO this method is temporarily returning a random token until the backend is ready
+    private fun Single<String>.handleErrorsOnLogin(): Single<String> {
+        return doOnError {
+            authTokenStore.storeAuthToken(UUID.randomUUID().toString())
+        }
     }
 
 }
