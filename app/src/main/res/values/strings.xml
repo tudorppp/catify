@@ -1,12 +1,18 @@
 <resources>
-    <string name="app_name">BaseProject</string>
-    <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="app_name">Catify</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="item_menu_logout">Logout</string>
+
+    <string name="login_username_hint">Username</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_button">Login</string>
+    <string name="login_invalid_password">Password must be at least 5 characters</string>
+    <string name="login_invalid_username">Username must be at least 4 characters</string>
+
+    <string name="unknown_error">Ooops! Something went wrong</string>
+    <string name="no_internet_error">It seems you don\'t have an internet connection!</string>
+    <string name="snackbar_retry">Retry</string>
+    <string name="retry">Retry</string>
+
+    <string name="breed_card_transition_name">breed_card_%1$s</string>
 </resources>

@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("kotlin-kapt")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -24,6 +26,10 @@ android {
         }
     }
 
+    buildFeatures {
+        dataBinding = true
+    }
+
     compileOptions {
         sourceCompatibility(JavaVersion.VERSION_1_8)
         targetCompatibility(JavaVersion.VERSION_1_8)
@@ -35,20 +41,41 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:${AppModuleVersions.AndroidX.coreKtx}")
-    implementation("androidx.appcompat:appcompat:${AppModuleVersions.AndroidX.appCompat}")
-    implementation("androidx.constraintlayout:constraintlayout:${AppModuleVersions.AndroidX.constraintLayout}")
+    implementation(project(":core"))
 
-    implementation("androidx.navigation:navigation-fragment-ktx:${AppModuleVersions.AndroidX.navigationComponent}")
-    implementation("androidx.navigation:navigation-ui-ktx:${AppModuleVersions.AndroidX.navigationComponent}")
+    implementation("androidx.core:core-ktx:${Version.AndroidX.coreKtx}")
+    implementation("androidx.appcompat:appcompat:${Version.AndroidX.appCompat}")
+    implementation("androidx.constraintlayout:constraintlayout:${Version.AndroidX.constraintLayout}")
 
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:${AppModuleVersions.AndroidX.lifecycle}")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${AppModuleVersions.AndroidX.lifecycle}")
-    implementation("androidx.lifecycle:lifecycle-common-java8-ktx:${AppModuleVersions.AndroidX.lifecycle}")
+    implementation("androidx.navigation:navigation-fragment-ktx:${Version.AndroidX.navigationComponent}")
+    implementation("androidx.navigation:navigation-ui-ktx:${Version.AndroidX.navigationComponent}")
 
-    implementation("com.google.android.material:material:${AppModuleVersions.materialComponentsVersion}")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:${Version.AndroidX.lifecycle}")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Version.AndroidX.lifecycle}")
+    implementation("androidx.lifecycle:lifecycle-common-java8:${Version.AndroidX.lifecycle}")
+    implementation("androidx.security:security-crypto:${Version.AndroidX.securityCrypto}")
+    
+    implementation("androidx.fragment:fragment-testing:${Version.AndroidX.coreKtx}")
 
-    testImplementation("androidx.arch.core:core-testing:${AppModuleVersions.AndroidX.testArch}")
+    implementation("com.google.android.material:material:${Version.materialComponents}")
 
-    //TODO dependencies for testing
+    implementation("io.insert-koin:koin-androidx-scope:${Version.koin}")
+    implementation("io.insert-koin:koin-androidx-viewmodel:${Version.koin}")
+
+    implementation("io.reactivex.rxjava3:rxandroid:${Version.RXJava}")
+
+    implementation("com.github.bumptech.glide:glide:${Version.glide}")
+    implementation("com.github.bumptech.glide:annotations:${Version.glide}")
+    annotationProcessor("com.github.bumptech.glide:compiler:${Version.glide}")
+
+
+    androidTestImplementation("androidx.arch.core:core-testing:${Version.AndroidX.testArch}")
+    androidTestImplementation("androidx.test.ext:junit-ktx:${Version.Test.junitKtx}")
+    androidTestImplementation("org.assertj:assertj-core:${Version.Test.assertJCore}")
+
+    androidTestImplementation("androidx.navigation:navigation-testing:${Version.AndroidX.navigationComponent}")
+    androidTestImplementation("com.google.truth:truth:${Version.Test.truth}")
+    androidTestImplementation("androidx.test.espresso:espresso-core:${Version.Test.espresso}")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:${Version.Test.espresso}")
+    androidTestImplementation("androidx.test.espresso:espresso-intents:${Version.Test.espresso}")
 }
