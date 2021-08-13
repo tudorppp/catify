@@ -80,30 +80,22 @@ class LoginViewModel(
                 .subscribe({
                     _state.value = Event(State.LoginSucceeded)
                 }, {
-                    val messageType = getMessageForErrorType(it.asError())
-                    when (val result = messageType) {
-                        is ErrorMessageType.Res -> _state.value = Event(State.LoginFailed(result.messageResId, null))
-                        is ErrorMessageType.Text -> _state.value = Event(State.LoginFailed(null, result.message))
-                    }
+                    val messageText = getErrorMessage(it.asError())
+                    _state.value = Event(State.LoginFailed(messageText))
                 })
         )
     }
 
-    private fun getMessageForErrorType(errorType: ErrorType): ErrorMessageType {
+    private fun getErrorMessage(errorType: ErrorType): String {
         return when (errorType) {
-            is ErrorType.Api -> ErrorMessageType.Text(errorType.message ?: "")
-            ErrorType.NoInternet -> ErrorMessageType.Res(R.string.no_internet_error)
-            ErrorType.Unknown -> ErrorMessageType.Res(R.string.unknown_error)
+            is ErrorType.Api -> errorType.message ?: ""
+            ErrorType.NoInternet -> resources.getString(R.string.no_internet_error)
+            ErrorType.Unknown -> resources.getString(R.string.unknown_error)
         }
-    }
-
-    private sealed class ErrorMessageType {
-        data class Text(val message: String) : ErrorMessageType()
-        data class Res(@StringRes val messageResId: Int) : ErrorMessageType()
     }
 
     sealed class State {
         object LoginSucceeded : State()
-        data class LoginFailed(@StringRes val errorId: Int? = null, val errorMessage: String? = null) : State()
+        data class LoginFailed(val errorMessage: String) : State()
     }
 }

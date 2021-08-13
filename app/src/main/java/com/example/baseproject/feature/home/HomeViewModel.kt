@@ -1,6 +1,6 @@
 package com.example.baseproject.feature.home
 
-import androidx.annotation.StringRes
+import android.content.res.Resources
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
@@ -22,7 +22,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalCoroutinesApi
 class HomeViewModel(
     private val getCatBreedsUseCase: GetCatBreedsUseCase,
-    private val logoutUsernameUseCase: LogoutUsernameUseCase
+    private val logoutUsernameUseCase: LogoutUsernameUseCase,
+    private val resources: Resources
 ) : BaseRxViewModel() {
 
     private val _catBreeds = MutableLiveData<PagingData<CatBreedUIModel>>()
@@ -67,13 +68,8 @@ class HomeViewModel(
                 .subscribe({
                     _logoutState.value = Event(State.Logout.Success)
                 }, {
-                    val messageType = getMessageForErrorType(it.asError())
-                    when (val result = messageType) {
-                        is ErrorMessageType.Res -> _logoutState.value =
-                            Event(State.Logout.Failed(result.messageResId, null))
-                        is ErrorMessageType.Text -> _logoutState.value =
-                            Event(State.Logout.Failed(null, result.message))
-                    }
+                    val errorMessage = getErrorMessage(it.asError())
+                    _logoutState.value = Event(State.Logout.Failed(errorMessage))
                 })
         )
     }
@@ -82,17 +78,12 @@ class HomeViewModel(
         _state.value = state
     }
 
-    private fun getMessageForErrorType(errorType: ErrorType): ErrorMessageType {
+    private fun getErrorMessage(errorType: ErrorType): String {
         return when (errorType) {
-            is ErrorType.Api -> ErrorMessageType.Text(errorType.message ?: "")
-            ErrorType.NoInternet -> ErrorMessageType.Res(R.string.no_internet_error)
-            ErrorType.Unknown -> ErrorMessageType.Res(R.string.unknown_error)
+            is ErrorType.Api -> errorType.message ?: ""
+            ErrorType.NoInternet -> resources.getString(R.string.no_internet_error)
+            ErrorType.Unknown -> resources.getString(R.string.unknown_error)
         }
-    }
-
-    private sealed class ErrorMessageType {
-        data class Text(val message: String) : ErrorMessageType()
-        data class Res(@StringRes val messageResId: Int) : ErrorMessageType()
     }
 
     sealed class State {
@@ -102,7 +93,7 @@ class HomeViewModel(
 
         sealed class Logout : State() {
             object Success : Logout()
-            data class Failed(@StringRes val errorId: Int? = null, val errorMessage: String? = null) : Logout()
+            data class Failed(val errorMessage: String) : Logout()
         }
     }
 }

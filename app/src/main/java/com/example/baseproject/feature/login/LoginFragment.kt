@@ -24,11 +24,7 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>(R.layou
             state.observe(viewLifecycleOwner) {
                 when (val result = it.consume()) {
                     is LoginViewModel.State.LoginFailed -> {
-                        if (result.errorId != null) {
-                            showSnackBar(result.errorId, Snackbar.LENGTH_SHORT)
-                        } else if (result.errorMessage != null) {
-                            showSnackBar(result.errorMessage, Snackbar.LENGTH_SHORT)
-                        }
+                        showSnackBar(result.errorMessage, Snackbar.LENGTH_SHORT)
                     }
                     LoginViewModel.State.LoginSucceeded -> {
                         binding.loginButton.closeKeyboard()
