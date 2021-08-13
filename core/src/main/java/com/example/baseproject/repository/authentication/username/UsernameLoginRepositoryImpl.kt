@@ -19,9 +19,7 @@ internal class UsernameLoginRepositoryImpl(
                     authTokenStore.storeAuthToken(it)
                 }
                 .handleErrorsOnLogin()
-        ).onErrorComplete {
-            true
-        }
+        ).onErrorComplete()
     }
 
     override fun logout(): Completable {
@@ -39,6 +37,7 @@ internal class UsernameLoginRepositoryImpl(
     private fun Single<String>.handleErrorsOnLogin(): Single<String> {
         return doOnError {
             authTokenStore.storeAuthToken(UUID.randomUUID().toString())
+            onErrorComplete()
         }
     }
 
