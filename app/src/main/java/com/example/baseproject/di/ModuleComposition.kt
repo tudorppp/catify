@@ -1,7 +1,7 @@
 package com.example.baseproject.di
 
-import com.example.baseproject.home.homeModule
-import com.example.baseproject.login.loginModule
+import com.example.baseproject.feature.home.homeModule
+import com.example.baseproject.feature.login.loginModule
 import com.example.baseproject.shared.requireLoginModule
 import com.example.baseproject.util.sharedPrefsModule
 import org.koin.core.module.Module

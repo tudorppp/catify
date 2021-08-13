@@ -1,4 +1,4 @@
-package com.example.baseproject.login
+package com.example.baseproject.feature.login
 
 import android.content.res.Resources
 import androidx.annotation.StringRes

@@ -1,6 +1,6 @@
-package com.example.baseproject.home
+package com.example.baseproject.feature.home
 
-import com.example.baseproject.home.breed_detail.BreedDetailViewModel
+import com.example.baseproject.feature.home.breed_detail.BreedDetailViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

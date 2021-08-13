@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.baseproject.home.HomeFragment"
+        android:name="com.example.baseproject.feature.home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
 
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/breedDetailFragment"
-        android:name="com.example.baseproject.home.breed_detail.BreedDetailFragment"
+        android:name="com.example.baseproject.feature.home.breed_detail.BreedDetailFragment"
         android:label="Detail"
         tools:layout="@layout/fragment_breed_detail">
         <argument
