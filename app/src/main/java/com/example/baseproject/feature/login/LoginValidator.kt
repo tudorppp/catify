@@ -1,4 +1,4 @@
-package com.example.baseproject.login
+package com.example.baseproject.feature.login
 
 private const val MINIMUM_ACCEPTED_PASSWORD_LENGTH = 5
 private const val MINIMUM_ACCEPTED_USERNAME_LENGTH = 4

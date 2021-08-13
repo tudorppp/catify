@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.baseproject.login.LoginViewModel" />
+            type="com.example.baseproject.feature.login.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

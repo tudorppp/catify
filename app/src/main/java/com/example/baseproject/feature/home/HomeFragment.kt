@@ -1,4 +1,4 @@
-package com.example.baseproject.home
+package com.example.baseproject.feature.home
 
 import android.os.Bundle
 import android.view.*

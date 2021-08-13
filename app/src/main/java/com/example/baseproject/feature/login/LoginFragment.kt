@@ -1,4 +1,4 @@
-package com.example.baseproject.login
+package com.example.baseproject.feature.login
 
 import android.os.Bundle
 import android.view.View

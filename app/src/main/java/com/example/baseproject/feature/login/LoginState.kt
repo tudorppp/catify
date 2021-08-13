@@ -1,4 +1,4 @@
-package com.example.baseproject.login
+package com.example.baseproject.feature.login
 
 const val LOGIN_STATE = "loginState"
 

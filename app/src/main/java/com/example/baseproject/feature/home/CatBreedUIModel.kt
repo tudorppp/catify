@@ -1,4 +1,4 @@
-package com.example.baseproject.home
+package com.example.baseproject.feature.home
 
 import com.example.baseproject.model.entity.Breed
 

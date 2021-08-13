@@ -8,8 +8,8 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.baseproject.LoginDirections
-import com.example.baseproject.login.LOGIN_STATE
-import com.example.baseproject.login.LoginState
+import com.example.baseproject.feature.login.LOGIN_STATE
+import com.example.baseproject.feature.login.LoginState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 abstract class RequireLoginBaseFragment<VB : ViewDataBinding, VM : ViewModel>(@LayoutRes private val resId: Int) :

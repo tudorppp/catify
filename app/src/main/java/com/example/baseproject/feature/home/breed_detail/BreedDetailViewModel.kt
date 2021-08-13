@@ -1,4 +1,4 @@
-package com.example.baseproject.home.breed_detail
+package com.example.baseproject.feature.home.breed_detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

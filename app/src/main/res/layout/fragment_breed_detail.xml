@@ -8,7 +8,7 @@
 
         <variable
             name="uiModel"
-            type="com.example.baseproject.home.breed_detail.BreedDetailUiModel" />
+            type="com.example.baseproject.feature.home.breed_detail.BreedDetailUiModel" />
 
     </data>
 
