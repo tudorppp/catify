@@ -44,11 +44,7 @@ class HomeFragment : RequireLoginBaseFragment<HomeFragmentBinding, HomeViewModel
             logoutState.observe(viewLifecycleOwner) {
                 when (val result = it.consume()) {
                     is HomeViewModel.State.Logout.Failed -> {
-                        if (result.errorId != null) {
-                            showSnackBar(result.errorId, Snackbar.LENGTH_SHORT)
-                        } else if (result.errorMessage != null) {
-                            showSnackBar(result.errorMessage, Snackbar.LENGTH_SHORT)
-                        }
+                        showSnackBar(result.errorMessage, Snackbar.LENGTH_SHORT)
                     }
                     HomeViewModel.State.Logout.Success ->
                         findNavController().navigate(HomeFragmentDirections.actionToLoginFragment())
